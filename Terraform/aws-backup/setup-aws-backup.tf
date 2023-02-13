@@ -126,16 +126,3 @@ resource "aws_iam_role_policy_attachment" "backup_role_policy_ec2_rds" {
   role       = aws_iam_role.backup_role.name
 }
 
-
-# Create backup vault in DR i.e. secondary region
-# resource "aws_backup_vault" "dr_backup_vault" {
-#   provider = aws.target_account_admin_dr_region
-#   count    = length(split("mm-prod-", data.aws_ssm_parameter.account_alias.value)) > 1 ? 1 : 0
-#   name     = "secondary_backup_vault"
-# }
-
-# copy_backups_to_dr                   = length(split("mm-prod-", data.aws_ssm_parameter.account_alias.value)) > 1 ? true : false
-# secondary_vault_arn                  = length(split("mm-prod-", data.aws_ssm_parameter.account_alias.value)) > 1 ? aws_backup_vault.dr_backup_vault[0].arn : null
-
-# copy_backups_to_dr                   = length(split("mm-prod-", data.aws_ssm_parameter.account_alias.value)) > 1 ? true : false
-# secondary_vault_arn                  = length(split("mm-prod-", data.aws_ssm_parameter.account_alias.value)) > 1 ? aws_backup_vault.dr_backup_vault[0].arn : null

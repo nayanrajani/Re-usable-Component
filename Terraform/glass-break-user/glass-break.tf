@@ -12,13 +12,10 @@ data "aws_iam_policy_document" "assume_role_document" {
     ]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::292929786526:user/mlzuser"]
+      identifiers = ["arn:aws:iam::<account-id>:user/<iamusername>"]
     }
   }
 }
-
-#arn:aws:iam::${data.aws_caller_identity.source.account_id}:root
-#arn:aws:iam::292929786526:user/mlzuser
 
 resource "aws_iam_role" "admin_assume_role" {
   name                = "super-admin-role"
