@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_endpoints" {
-  name        = "sg_comsrv_endpoint"
+  name        = "sg"
   description = "allow for ssm, ssmmessages and ec2messages vpc endpoint"
-  vpc_id      = aws_vpc.comsrv_vpc.id
+  vpc_id      = aws_vpc.VPC_ID.id   # Add VPC ID
 
   dynamic "ingress" {
     for_each = local.rules
@@ -23,8 +23,7 @@ resource "aws_security_group" "allow_endpoints" {
   }
 
   tags = merge(
-    { "Name" : "sg_comsrv_endpoint" },
-    local.common_tags
+    { "Name" : "sg" }
   )
 
 }
